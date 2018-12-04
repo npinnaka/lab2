@@ -1,0 +1,7 @@
+{
+"000000" "unable to load input file, please provide valid file name"
+"000001" "unable to load delimited file data, please give files in correct or and make and file are valid"
+"000002" "data validations failed on provided files, please check data on files."
+"000003" "no valid delimiter's found, please re-enter data"
+"000010" "unable to parse date"
+}
