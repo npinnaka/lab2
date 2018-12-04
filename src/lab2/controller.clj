@@ -1,7 +1,6 @@
 (ns lab2.controller
   "controller for all routers"
   (:require [lab2.file-processor :as fp]
-            [clojure.tools.logging :as log]
             [clojure.data.json :as json]
             [utilities.sorts :as sorts]))
 

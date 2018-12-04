@@ -3,7 +3,6 @@
   (:require [clojure.spec.alpha :as spec]
             [clojure.string :as strg]
             [utilities.utils :as util]
-            [clj-time.format :as format]
             [clojure.tools.logging :as log]))
 
 (spec/def ::last-name
