@@ -9,7 +9,13 @@
            "Johnson,Abigail,F,Green,12/19/1961"])
 
 (def output
-  [{:last-name      "Jobs"
+  [{:last-name      "Black",
+    :first-name     "Steve",
+    :gender         "M",
+    :favorite-color "Black",
+    :date-of-birth  "10/19/1956",
+    :name           "Steve Black"}
+   {:last-name      "Jobs"
     :first-name     "Steve"
     :gender         "M"
     :favorite-color "Black"
@@ -21,6 +27,58 @@
     :favorite-color "Green"
     :date-of-birth  "12/19/1961"
     :name           "Abigail Johnson"}])
+
+(def output-1
+  [{:last-name      "Jobs",
+    :first-name     "Steve",
+    :gender         "M",
+    :favorite-color "Black",
+    :date-of-birth  "10/19/1964",
+    :name           "Steve Jobs"}
+   {:last-name      "Black",
+    :first-name     "Steve",
+    :gender         "M",
+    :favorite-color "Black",
+    :date-of-birth  "10/19/1956",
+    :name           "Steve Black"}])
+
+(def output-2  [{:last-name      "Johnson",
+                 :first-name     "Abigail",
+                 :gender         "F",
+                 :favorite-color "Green",
+                 :date-of-birth  "12/19/1961",
+                 :name           "Abigail Johnson"}
+                {:last-name      "Black",
+                 :first-name     "Steve",
+                 :gender         "M",
+                 :favorite-color "Black",
+                 :date-of-birth  "10/19/1956",
+                 :name           "Steve Black"}
+                {:last-name      "Jobs",
+                 :first-name     "Steve",
+                 :gender         "M",
+                 :favorite-color "Black",
+                 :date-of-birth  "10/19/1964",
+                 :name           "Steve Jobs"}])
+
+(def output-3 [{:last-name      "Jobs",
+                :first-name     "Steve",
+                :gender         "M",
+                :favorite-color "Black",
+                :date-of-birth  "10/19/1964",
+                :name           "Steve Jobs"}
+               {:last-name      "Johnson",
+                :first-name     "Abigail",
+                :gender         "F",
+                :favorite-color "Green",
+                :date-of-birth  "12/19/1961",
+                :name           "Abigail Johnson"}
+               {:last-name      "Black",
+                :first-name     "Steve",
+                :gender         "M",
+                :favorite-color "Black",
+                :date-of-birth  "10/19/1956",
+                :name           "Steve Black"}])
 
 (test/deftest test-app
   (test/testing "main route"
@@ -34,7 +92,7 @@
                   (test/is (= (:status response) 200))
                   (test/is
                    (= (json/read-str (:body response) :key-fn keyword)
-                      (vector (first output)))))
+                      output-1)))
                 (let [response (handler/app
                                 (-> (mock/request :post "/records")
                                     (mock/json-body
@@ -53,14 +111,12 @@
                                 (mock/request :get "/records/name"))]
                   (test/is (= (:status response) 200))
                   (test/is
-                   (= (json/read-str (:body response) :key-fn keyword)
-                      (reverse output))))
+                   (= (json/read-str (:body response) :key-fn keyword) output-2)))
                 (let [response (handler/app
                                 (mock/request :get "/records/birthdate"))]
                   (test/is (= (:status response) 200))
                   (test/is
                    (= (json/read-str (:body response) :key-fn keyword)
-                      output)))
-
+                      output-3)))
                 (let [response (handler/app (mock/request :get "/invalid"))]
                   (test/is (= (:status response) 404)))))
