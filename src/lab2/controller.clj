@@ -2,7 +2,8 @@
   "controller for all routers"
   (:require [lab2.file-processor :as fp]
             [clojure.data.json :as json]
-            [utilities.sorts :as sorts]))
+            [utilities.sorts :as sorts]
+            [clojure.tools.logging :as log]))
 
 (def data (atom '()))
 
@@ -14,8 +15,11 @@
            (->
             input-data
             (fp/get-validated-data-service)))
-    (catch RuntimeException e (.getMessage e))
-    (catch Exception e (.getMessage e))))
+    (catch RuntimeException e (.getMessage e)
+      (log/error "runtime exception occured while posting record " e))
+    (catch Exception e (.getMessage e)
+      (log/error "exception occured while posting record " e))))
+
 ;
 ;(defn sort-by-name
 ;  "sort data by last-name, returns json formated data"
@@ -23,7 +27,7 @@
 ;  (json/write-str (sorts/generic-sort @data :last-name)))
 
 (defn sort-by-name
-  "sort data by last-name, returns json formated data"
+  "sort data by name, returns json formated data"
   []
   (json/write-str (sorts/generic-sort @data :name)))
 

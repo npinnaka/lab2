@@ -3,7 +3,8 @@
   (:require [utilities.utils :as util]
             [clojure.string :as strg]
             [spec.person-spec :as ps]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [clojure.tools.logging :as log]))
 
 (defn identify-delimiter
   "identify delimiter for given input"
@@ -12,7 +13,8 @@
     (strg/includes? person-record-data ",")   ","
     (strg/includes? person-record-data "|")   "|"
     (strg/includes? person-record-data " ")   "s"
-    :else                                     (throw (RuntimeException. (get util/error-codes "000003")))))
+    :else
+     (throw (RuntimeException. (get util/error-codes "000003")))))
 
 (defn create-map
   "convert person-record to map, return a map"
