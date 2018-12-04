@@ -20,19 +20,24 @@
 
 (test/deftest parse-string->date-test
   (test/testing "test parse-string->date function"
-    (test/is
-     (= (time-core/local-date 1990 01 01)
-        (util/parse-string->date "01/01/1990"))
-     "01/01/1990")
-    (test/is
-     (= (time-core/local-date 2016 2 29)
-        (util/parse-string->date "02/29/2016"))
-     "02/29/2016")))
+                (test/is
+                 (= (time-core/local-date 1990 01 01)
+                    (util/parse-string->date "01/01/1990"))
+                 "01/01/1990")
+                (test/is
+                 (= (time-core/local-date 2016 2 29)
+                    (util/parse-string->date "02/29/2016"))
+                 "02/29/2016")))
 
 (test/deftest load-edn-file-test
   (test/testing "test load-edn-file function"
-    (test/is
-     (= {:a 1}
-        (util/load-edn "test.edn")))))
+                (test/is
+                 (= {:a 1}
+                    (util/load-edn "test.edn")))))
+
+(test/deftest get-name-from-map-test
+  (test/testing "test get-name-from-map function"
+                (test/is
+                  (= "Gi Joe" (util/get-name-from-map {:first-name "Gi" :last-name "Joe"})))))
 
 (test/use-fixtures :once test-fixtures)

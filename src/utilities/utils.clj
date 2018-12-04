@@ -21,3 +21,8 @@
   "convert date string to LoadDate"
   [date-string]
   (format/parse-local-date date-formatter date-string))
+
+(defn get-name-from-map
+  "get name field from map first-name and last-name"
+  [row]
+  (str (get row :first-name) " " (get row :last-name)))

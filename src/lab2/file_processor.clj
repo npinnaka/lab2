@@ -39,7 +39,7 @@
   (let [rows (map split-row-and-create-map persons-vector)]
     (if (every? ps/valid-person? rows)
       (identity
-        (map #(merge % {:name (str (get % :first-name) " " (get % :last-name))}) rows))
+       (map #(merge % {:name (util/get-name-from-map %)}) rows))
       (throw (RuntimeException. (get util/error-codes "000002"))))))
 
 (defn get-validated-data-service
@@ -48,8 +48,8 @@
   (let [person-row (split-row-and-create-map persons-vector)]
     (if (ps/valid-person? person-row)
       (identity
-        (merge person-row
-               {:name (str (get person-row :first-name) " " (get person-row :last-name))}))
+       (merge person-row
+              {:name (util/get-name-from-map person-row)}))
       (throw (RuntimeException. (get util/error-codes "000002"))))))
 
 (defn load-delimiter-file
