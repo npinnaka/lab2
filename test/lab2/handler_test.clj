@@ -13,12 +13,14 @@
     :first-name     "Steve"
     :gender         "M"
     :favorite-color "Black"
-    :date-of-birth  "10/19/1964"}
+    :date-of-birth  "10/19/1964"
+    :name           "Steve Jobs"}
    {:last-name      "Johnson"
     :first-name     "Abigail"
     :gender         "F"
     :favorite-color "Green"
-    :date-of-birth  "12/19/1961"}])
+    :date-of-birth  "12/19/1961"
+    :name           "Abigail Johnson"}])
 
 (test/deftest test-app
   (test/testing "main route"
@@ -32,7 +34,7 @@
                   (test/is (= (:status response) 200))
                   (test/is
                    (= (json/read-str (:body response) :key-fn keyword)
-                      (vector(first output)))))
+                      (vector (first output)))))
                 (let [response (handler/app
                                 (-> (mock/request :post "/records")
                                     (mock/json-body
@@ -52,7 +54,7 @@
                   (test/is (= (:status response) 200))
                   (test/is
                    (= (json/read-str (:body response) :key-fn keyword)
-                      output)))
+                      (reverse output))))
                 (let [response (handler/app
                                 (mock/request :get "/records/birthdate"))]
                   (test/is (= (:status response) 200))

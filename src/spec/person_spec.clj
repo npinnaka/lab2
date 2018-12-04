@@ -16,7 +16,7 @@
 
 (spec/def ::gender
   (spec/and string?
-            #(contains? #{"M" "F"} %)))
+            #(contains? #{"M" "F"} (strg/upper-case %))))
 
 (spec/def ::favorite-color
   (spec/and string?
@@ -26,7 +26,7 @@
   (spec/and string?
             #(not (strg/blank? %))
             #(= 10 (count %)) ;;MM/dd/YYYY 10 bytes
-            #(try (some? (format/parse-local util/date-formatter %))
+            #(try (some? (util/parse-string->date %))
                   (catch IllegalArgumentException e
                     (log/error (.getMessage e))
                     (identity false)))))

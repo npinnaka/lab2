@@ -10,12 +10,14 @@
                               :first-name     "Simone"
                               :geneder        "F"
                               :favorite-color "Red"
-                              :date-of-birth  "03/14/1997"}
+                              :date-of-birth  "03/14/1997"
+                              :name           "Simone Biles"}
                              {:last-name      "Manning"
                               :first-name     "Peyton"
                               :geneder        "M"
                               :favorite-color "Blue"
-                              :date-of-birth  "06/14/1974"})]
+                              :date-of-birth  "06/14/1974"
+                              :name           "Peyton Manning"})]
                   (test/is
                    (= (reverse input)
                       (sorts/generic-sort input :last-name :sort-order "desc"))
@@ -25,12 +27,14 @@
                               :first-name     "Simone"
                               :geneder        "F"
                               :favorite-color "Red"
-                              :date-of-birth  "03/14/1997"}
+                              :date-of-birth  "03/14/1997"
+                              :name           "Simone Biles"}
                              {:last-name      "Manning"
                               :first-name     "Peyton"
                               :geneder        "M"
                               :favorite-color "Blue"
-                              :date-of-birth  "06/14/1974"})]
+                              :date-of-birth  "06/14/1974"
+                              :name           "Peyton Manning"})]
                   (test/is
                    (= input
                       (sorts/generic-sort input :last-name))
@@ -40,12 +44,14 @@
                               :first-name     "Simone"
                               :geneder        "F"
                               :favorite-color "Red"
-                              :date-of-birth  "03/14/1997"}
+                              :date-of-birth  "03/14/1997"
+                              :name           "Simone Biles"}
                              {:last-name      "Manning"
                               :first-name     "Peyton"
                               :geneder        "M"
                               :favorite-color "Blue"
-                              :date-of-birth  "06/14/1974"})]
+                              :date-of-birth  "06/14/1974"
+                              :name           "Peyton Manning"})]
                   (test/is
                    (= (reverse input)
                       (sorts/generic-sort input :date-of-birth :sort-order "date-asc"))
@@ -55,13 +61,49 @@
                               :first-name     "Simone"
                               :geneder        "F"
                               :favorite-color "Red"
-                              :date-of-birth  "03/14/1997"}
+                              :date-of-birth  "03/14/1997"
+                              :name           "Simone Biles"}
                              {:last-name      "Manning"
                               :first-name     "Peyton"
                               :geneder        "M"
                               :favorite-color "Blue"
-                              :date-of-birth  "06/14/1974"})]
+                              :date-of-birth  "06/14/1974"
+                              :name           "Peyton Manning"})]
                   (test/is
                    (= input
                       (sorts/generic-sort input :date-of-birth :sort-order "date-desc"))
-                   "date-of-birth decending sort test failed"))))
+                   "date-of-birth decending sort test failed"))
+                (let [input (list
+                             {:last-name      "Biles"
+                              :first-name     "Simone"
+                              :geneder        "F"
+                              :favorite-color "Red"
+                              :date-of-birth  "03/14/1997"
+                              :name           "Simone Biles"}
+                             {:last-name      "Manning"
+                              :first-name     "Peyton"
+                              :geneder        "M"
+                              :favorite-color "Blue"
+                              :date-of-birth  "06/14/1974"
+                              :name           "Peyton Manning"})]
+                  (test/is
+                   (= input
+                      (sorts/generic-sort input :name :sort-order "desc"))
+                   "name decending sort test failed"))
+                (let [input (list
+                             {:last-name      "Biles"
+                              :first-name     "Simone"
+                              :geneder        "F"
+                              :favorite-color "Red"
+                              :date-of-birth  "03/14/1997"
+                              :name           "Simone Biles"}
+                             {:last-name      "Manning"
+                              :first-name     "Peyton"
+                              :geneder        "M"
+                              :favorite-color "Blue"
+                              :date-of-birth  "06/14/1974"
+                              :name           "Peyton Manning"})]
+                  (test/is
+                   (= (reverse input)
+                      (sorts/generic-sort input :name))
+                   "name ascending sort test failed"))))

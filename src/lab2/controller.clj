@@ -17,11 +17,16 @@
             (fp/get-validated-data-service)))
     (catch RuntimeException e (.getMessage e))
     (catch Exception e (.getMessage e))))
+;
+;(defn sort-by-name
+;  "sort data by last-name, returns json formated data"
+;  []
+;  (json/write-str (sorts/generic-sort @data :last-name)))
 
 (defn sort-by-name
   "sort data by last-name, returns json formated data"
   []
-  (json/write-str (sorts/generic-sort @data :last-name)))
+  (json/write-str (sorts/generic-sort @data :name)))
 
 (defn sort-by-gender
   "sort data by gneder, returns json formated data"

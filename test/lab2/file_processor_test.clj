@@ -3,25 +3,29 @@
   (:require [clojure.test :as test]
             [lab2.file-processor :as fp]))
 
-(def data-out ["Doe,John,M,Red,01/01/1990"
-             "Jobs,Steve,M,Black,10/19/1964"
-             "Johnson,Abigail,F,Green,12/19/1961"])
+(def data-out ["Doer,John,M,Red,01/01/1990"
+               "Jobs,Steve,M,Black,10/19/1964"
+               "Johnson,Abigail,F,Green,12/19/1961"])
 
-(def out-map '({:last-name      "Doe",
-  :first-name     "John",
-  :gender         "M",
-  :favorite-color "Red",
-  :date-of-birth  "01/01/1990"}
-  {:last-name      "Jobs",
-   :first-name     "Steve",
-   :gender         "M",
-   :favorite-color "Black",
-   :date-of-birth  "10/19/1964"}
-  {:last-name      "Johnson",
-   :first-name     "Abigail",
-   :gender         "F",
-   :favorite-color "Green",
-   :date-of-birth  "12/19/1961"}))
+(def out-map
+  '({:last-name      "Doer",
+     :first-name     "John",
+     :gender         "M",
+     :favorite-color "Red",
+     :date-of-birth  "01/01/1990"
+     :name           "John Doer"}
+    {:last-name      "Jobs",
+     :first-name     "Steve",
+     :gender         "M",
+     :favorite-color "Black",
+     :date-of-birth  "10/19/1964"
+     :name           "Steve Jobs"}
+    {:last-name      "Johnson",
+     :first-name     "Abigail",
+     :gender         "F",
+     :favorite-color "Green",
+     :date-of-birth  "12/19/1961"
+     :name           "Abigail Johnson"}))
 
 (test/deftest create-map-test
   (test/testing "test create-map function"
@@ -100,46 +104,54 @@
 
 (test/deftest prepare-data-test
   (test/testing "test prepare-data function"
-                (let [data-out '({:last-name      "Doe",
-                               :first-name     "John",
-                               :gender         "M",
-                               :favorite-color "Red",
-                               :date-of-birth  "01/01/1990"}
-                              {:last-name      "Jobs",
-                               :first-name     "Steve",
-                               :gender         "M",
-                               :favorite-color "Black",
-                               :date-of-birth  "10/19/1964"}
-                              {:last-name      "Johnson",
-                               :first-name     "Abigail",
-                               :gender         "F",
-                               :favorite-color "Green",
-                               :date-of-birth  "12/19/1961"}
-                              {:last-name      "Page",
-                               :first-name     "Larry",
-                               :gender         "M",
-                               :favorite-color "Blue",
-                               :date-of-birth  "08/01/1970"}
-                              {:last-name      "Brin",
-                               :first-name     "Sergey",
-                               :gender         "M",
-                               :favorite-color "Green",
-                               :date-of-birth  "10/29/1964"}
-                              {:last-name      "Jung",
-                               :first-name     "Andrea",
-                               :gender         "F",
-                               :favorite-color "Silver",
-                               :date-of-birth  "10/29/1954"}
-                              {:last-name      "Nooyi",
-                               :first-name     "Indra",
-                               :gender         "F",
-                               :favorite-color "Blue",
-                               :date-of-birth  "08/06/1959"}
-                              {:last-name      "Warrior",
-                               :first-name     "Padmasree",
-                               :gender         "F",
-                               :favorite-color "White",
-                               :date-of-birth  "02/18/1950"})]
+                (let [data-out '({:last-name      "Doer",
+                                  :first-name     "John",
+                                  :gender         "M",
+                                  :favorite-color "Red",
+                                  :date-of-birth  "01/01/1990"
+                                  :name           "John Doer"}
+                                 {:last-name      "Jobs",
+                                  :first-name     "Steve",
+                                  :gender         "M",
+                                  :favorite-color "Black",
+                                  :date-of-birth  "10/19/1964"
+                                  :name           "Steve Jobs"}
+                                 {:last-name      "Johnson",
+                                  :first-name     "Abigail",
+                                  :gender         "F",
+                                  :favorite-color "Green",
+                                  :date-of-birth  "12/19/1961"
+                                  :name           "Abigail Johnson"}
+                                 {:last-name      "Page",
+                                  :first-name     "Larry",
+                                  :gender         "M",
+                                  :favorite-color "Blue",
+                                  :date-of-birth  "08/01/1970"
+                                  :name           "Larry Page"}
+                                 {:last-name      "Brin",
+                                  :first-name     "Sergey",
+                                  :gender         "M",
+                                  :favorite-color "Green",
+                                  :date-of-birth  "10/29/1964"
+                                  :name           "Sergey Brin"}
+                                 {:last-name      "Jung",
+                                  :first-name     "Andrea",
+                                  :gender         "F",
+                                  :favorite-color "Silver",
+                                  :date-of-birth  "10/29/1954"
+                                  :name           "Andrea Jung"}
+                                 {:last-name      "Nooyi",
+                                  :first-name     "Indra",
+                                  :gender         "F",
+                                  :favorite-color "Blue",
+                                  :date-of-birth  "08/06/1959"
+                                  :name           "Indra Nooyi"}
+                                 {:last-name      "Warrior",
+                                  :first-name     "Padmasree",
+                                  :gender         "F",
+                                  :favorite-color "White",
+                                  :date-of-birth  "02/18/1950"
+                                  :name           "Padmasree Warrior"})]
                   (test/is
                    (=
                     data-out
