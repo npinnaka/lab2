@@ -31,6 +31,12 @@
   []
   (json/write-str (sorts/generic-sort @data :name)))
 
+(defn sort-by
+  "a generic sort by function"
+  [sort-by direction]
+   (sorts/generic-sort @data (keyword sort-by)
+                       :sort-order direction))
+
 (defn sort-by-gender
   "sort data by gneder, returns json formated data"
   []

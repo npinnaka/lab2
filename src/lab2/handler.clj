@@ -13,6 +13,8 @@
     (ctrl/sort-by-name))
   (GET "/records/gender" []
     (ctrl/sort-by-gender))
+  (GET "/records/sortby" [_ :as r]
+       (ctrl/sort-by (get (:params r) :sortby) (get (:params r) :direction)) )
   (GET "/records/birthdate" [] (ctrl/sort-by-birth-date))
   (route/not-found "Not Found"))
 
